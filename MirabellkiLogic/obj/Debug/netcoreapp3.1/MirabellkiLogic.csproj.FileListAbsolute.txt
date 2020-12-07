@@ -1,0 +1,15 @@
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\bin\Debug\netcoreapp3.1\MirabellkiLogic.deps.json
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\bin\Debug\netcoreapp3.1\MirabellkiLogic.dll
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.csprojAssemblyReference.cache
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.AssemblyInfoInputs.cache
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.AssemblyInfo.cs
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\bin\Debug\netcoreapp3.1\MirabellkiLogic.pdb
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\bin\Debug\netcoreapp3.1\MirabelkiDomain.dll
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\bin\Debug\netcoreapp3.1\MirabelkiDomain.pdb
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.csproj.CopyComplete
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.dll
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.pdb
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\bin\Debug\netcoreapp3.1\MirabellkiLogic.runtimeconfig.json
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\bin\Debug\netcoreapp3.1\MirabellkiLogic.runtimeconfig.dev.json
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.genruntimeconfig.cache
+C:\Users\Gdyku\Desktop\Project\MirabellkiLogic\obj\Debug\netcoreapp3.1\MirabellkiLogic.csproj.CoreCompileInputs.cache

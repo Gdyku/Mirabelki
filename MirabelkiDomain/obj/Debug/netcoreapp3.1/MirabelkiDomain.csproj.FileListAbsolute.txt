@@ -1,0 +1,12 @@
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\bin\Debug\netcoreapp3.1\MirabelkiDomain.deps.json
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\bin\Debug\netcoreapp3.1\MirabelkiDomain.dll
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\obj\Debug\netcoreapp3.1\MirabelkiDomain.csprojAssemblyReference.cache
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\obj\Debug\netcoreapp3.1\MirabelkiDomain.AssemblyInfoInputs.cache
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\obj\Debug\netcoreapp3.1\MirabelkiDomain.AssemblyInfo.cs
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\bin\Debug\netcoreapp3.1\MirabelkiDomain.pdb
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\obj\Debug\netcoreapp3.1\MirabelkiDomain.dll
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\obj\Debug\netcoreapp3.1\MirabelkiDomain.pdb
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\bin\Debug\netcoreapp3.1\MirabelkiDomain.runtimeconfig.json
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\bin\Debug\netcoreapp3.1\MirabelkiDomain.runtimeconfig.dev.json
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\obj\Debug\netcoreapp3.1\MirabelkiDomain.genruntimeconfig.cache
+C:\Users\Gdyku\Desktop\Project\MirabelkiDomain\obj\Debug\netcoreapp3.1\MirabelkiDomain.csproj.CoreCompileInputs.cache
