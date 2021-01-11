@@ -19,8 +19,8 @@ namespace FirstApp.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<User>>> GetUsersList()
+        [HttpGet("getusers")]
+        public async Task<ActionResult<List<User>>> GetUsers()
         {
             return await _mediator.Send(new GetUsers.Query()); 
         }

@@ -19,7 +19,7 @@ namespace FirstApp.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpGet("getproducts")]
         public async Task<ActionResult<List<Product>>> GetProductsList()
         {
             return await _mediator.Send(new GetProducts.Query()); 
