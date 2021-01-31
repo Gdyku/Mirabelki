@@ -1,16 +1,17 @@
-import React from "react";
-import { Button, Container, Menu } from "semantic-ui-react";
+import React from 'react';
+import { Menu, Container, Button } from 'semantic-ui-react';
 
-export const Navbar = () => {
+export const NavBar = ({openCreateForm}) => {
   return (
-    <Menu fixed="top" inverted>
+    <Menu fixed='top' inverted>
       <Container>
-        <Menu.Item name ="home" style={{}}/>
-        <Menu.Item position="right">
-            <Button positive content="Log in" />
+        <Menu.Item header>
+            <img src="/assets/logo.png" alt="logo" style={{marginRight: 10}}/>
+            Reactivities
         </Menu.Item>
+        <Menu.Item name='Activities' />
         <Menu.Item>
-            <Button positive content="Sign up"/>
+            <Button onClick={openCreateForm} positive content='Create Product' />
         </Menu.Item>
       </Container>
     </Menu>

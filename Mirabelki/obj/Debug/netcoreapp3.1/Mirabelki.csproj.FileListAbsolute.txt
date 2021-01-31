@@ -68,3 +68,4 @@ C:\Users\Gdyku\Desktop\Project\Mirabelki\obj\Debug\netcoreapp3.1\Mirabelki.MvcAp
 C:\Users\Gdyku\Desktop\Project\Mirabelki\bin\Debug\netcoreapp3.1\mirabelkishop\package-lock.json
 C:\Users\Gdyku\Desktop\Project\Mirabelki\bin\Debug\netcoreapp3.1\mirabelkishop\package.json
 C:\Users\Gdyku\Desktop\Project\Mirabelki\bin\Debug\netcoreapp3.1\mirabelkishop\public\manifest.json
+C:\Users\Gdyku\Desktop\Project\mirabelki\bin\Debug\netcoreapp3.1\mirabelkishop\jsconfig.json

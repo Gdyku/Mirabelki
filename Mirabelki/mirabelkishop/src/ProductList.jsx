@@ -1,22 +1,40 @@
-import React from "react";
-import { Button, Item, Label, Segment } from "semantic-ui-react";
+import React from 'react';
+import { Item, Button, Label, Segment } from 'semantic-ui-react';
 
-export const ProductList = ({ products }) => {
+export const ProductList = ({
+  products,
+  selectProduct,
+  deleteProduct,
+  submitting,
+  target
+}) => {
   return (
     <Segment clearing>
       <Item.Group divided>
-        {products.map((product) => (
-          <Item key={product.ID}>
-            <Item.Image size="tiny" />
+        {products.map(product => (
+          <Item key={product.id}>
             <Item.Content>
-              <Item.Header as="a">{product.Name}</Item.Header>
-              <Item.Meta>{product.DateAdded}</Item.Meta>
+              <Item.Header as='a'>{product.name}</Item.Header>
+              <Item.Meta>{product.dateAdded}</Item.Meta>
               <Item.Description>
-                <div>{product.Description}</div>
+                <div>{product.description}</div>
               </Item.Description>
               <Item.Extra>
-                <Button floated="right" content="View" color="blue" />
-                <Label basic content={product.Category} />
+                <Button
+                  onClick={() => selectProduct(product.id)}
+                  floated='right'
+                  content='View'
+                  color='blue'
+                />
+                <Button
+                  name={product.id}
+                  loading={target === product.id && submitting}
+                  onClick={(e) => deleteProduct(e, product.id)}
+                  floated='right'
+                  content='Delete'
+                  color='red'
+                />
+                <Label basic content={product.category} />
               </Item.Extra>
             </Item.Content>
           </Item>

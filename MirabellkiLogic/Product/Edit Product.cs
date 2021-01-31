@@ -38,7 +38,7 @@ namespace MirabelkiLogic
                 product.Name = request.Name ?? product.Name;
                 product.Description = request.Description ?? product.Description;
                 product.Category = request.Category ?? product.Category;
-
+                
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
