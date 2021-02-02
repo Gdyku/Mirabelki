@@ -1,11 +1,13 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useContext } from "react";
 import { Container } from "semantic-ui-react";
-import {NavBar} from "./NavBar";
 import { ProductDashboard } from "./ProductDashboard";
 import agent from "./agent";
 import {LoadingComponent} from "./LoadingComponent";
+import { NavBar } from "./Navbar";
+import {ProductStore} from './productStore.js'
 
 const App = () => {
+  const productStore = useContext(ProductStore);
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -56,26 +58,17 @@ const App = () => {
   };
 
   useEffect(() => {
-    agent.Products.list()
-      .then((response) => {
-        let products = [];
-        response.forEach((product) => {
-          product.dateAdded = product.dateAdded.split(".")[0];
-          products.push(product);
-        });
-        setProducts(products);
-      })
-      .then(() => setLoading(false));
-  }, []);
+    productStore.loadProducts();
+  }, [productStore]);
 
-  if (loading) return <LoadingComponent content="Loading activities" />;
+  if (productStore.loadingInitial) return <LoadingComponent content="Loading activities" />;
 
   return (
     <Fragment>
       <NavBar openCreateForm={handleOpenCreateForm} />
       <Container style={{ marginTop: "7em" }}>
         <ProductDashboard
-          products={products}
+          products={productStore.products}
           selectProduct={handleSelectProduct}
           selectedProduct={selectedProduct}
           editMode={editMode}

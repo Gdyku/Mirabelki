@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3gaOV6yYu59X4MGqFRjB1J2etkGPh3YnGETgKZ0urNHmPn53/mhrw9VLDMsR4nIQksUQIl3rj2jvfw7ysgLV+Q==",
+  "dgSpecHash": "TeEwf+/vgogqUYtLkvvrCrANeJ6C9rqeXCarQ9p4nCJ9M572SNjUB4wlWbDJt0zhm3P597fSfmB64mca/Uko4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\Mirabelki.csproj",
+  "projectFilePath": "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\Mirabelki.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gdyku\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Gdyku\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",

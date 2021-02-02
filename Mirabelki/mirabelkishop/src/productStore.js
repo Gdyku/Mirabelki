@@ -1,5 +1,5 @@
-import { observable, action} from "mobx";
 import {createContext} from "react";
+import { action, computed, decorate, observable } from "../node_modules/mobx/lib/mobx";
 import agent from "./agent";
 
 class ProductStore{
@@ -16,5 +16,12 @@ class ProductStore{
         }).finally(() => this.loadingInitial = false);
     };
 }
+
+decorate(ProductStore, {
+    start: observable,
+    current: observable,
+    elapsedTime: computed,
+    tick: action
+});
 
 export default createContext(new ProductStore());
