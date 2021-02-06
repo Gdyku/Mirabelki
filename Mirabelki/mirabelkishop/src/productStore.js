@@ -16,12 +16,4 @@ class ProductStore{
         }).finally(() => this.loadingInitial = false);
     };
 }
-
-decorate(ProductStore, {
-    start: observable,
-    current: observable,
-    elapsedTime: computed,
-    tick: action
-});
-
 export default createContext(new ProductStore());
