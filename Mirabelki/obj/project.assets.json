@@ -1284,11 +1284,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\Mirabelki.csproj",
+      "projectUniqueName": "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\Mirabelki.csproj",
       "projectName": "Mirabelki",
-      "projectPath": "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\Mirabelki.csproj",
+      "projectPath": "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\Mirabelki.csproj",
       "packagesPath": "C:\\Users\\Gdyku\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\obj\\",
+      "outputPath": "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Gdyku\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1365,7 +1365,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

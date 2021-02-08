@@ -1,8 +1,17 @@
 import React, { useState, FormEvent } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
+import { IProduct } from './product';
 import {v4 as uuid} from 'uuid';
 
-export const ProductForm= ({
+interface IProps {
+  setEditMode: (editMode: boolean) => void;
+  product: IProduct;
+  createProduct: (product: IProduct) => void;
+  editProduct: (product: IProduct) => void;
+  submitting: boolean;
+}
+
+export const ProductForm: React.FC<IProps> = ({
   setEditMode,
   product: initialFormState,
   editProduct,
@@ -23,7 +32,7 @@ export const ProductForm= ({
     }
   };
 
-  const [product, setProduct] = useState(initializeForm);
+  const [product, setProduct] = useState<IProduct>(initializeForm);
 
   const handleSubmit = () => {
     if (product.id.length === 0) {
@@ -37,7 +46,9 @@ export const ProductForm= ({
     }
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (
+    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.currentTarget;
     setProduct({ ...product, [name]: value });
   };
@@ -48,7 +59,7 @@ export const ProductForm= ({
         <Form.Input
           onChange={handleInputChange}
           name='name'
-          placeholder='name'
+          placeholder='Title'
           value={product.name}
         />
         <Form.TextArea
@@ -82,5 +93,4 @@ export const ProductForm= ({
     </Segment>
   );
 };
-
 

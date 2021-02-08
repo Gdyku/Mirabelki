@@ -1,7 +1,14 @@
 import React from 'react';
 import { Card, Image, Button } from 'semantic-ui-react';
+import { IProduct } from './product';
 
-export const ProductDetails = ({product, setEditMode, setSelectedProduct}) => {
+interface IProps {
+    product: IProduct;
+    setEditMode: (editMode: boolean) => void;
+    setSelectedProduct: (product: IProduct | null) => void;
+}
+
+export const ProductDetails: React.FC<IProps> = ({product, setEditMode, setSelectedProduct}) => {
   return (
     <Card fluid>
       <Image />
@@ -23,3 +30,4 @@ export const ProductDetails = ({product, setEditMode, setSelectedProduct}) => {
     </Card>
   );
 };
+

@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Grid } from 'semantic-ui-react';
-import {ProductList} from './ProductList';
+import { IProduct } from './product';
 import { ProductDetails } from './ProductDetails';
 import { ProductForm } from './ProductForm';
+import { ProductList } from './ProductList';
 
-export const ProductDashboard = ({
+
+interface IProps {
+  products: IProduct[];
+  selectProduct: (id: string) => void;
+  selectedProduct: IProduct | null;
+  editMode: boolean;
+  setEditMode: (editMode: boolean) => void;
+  setSelectedProduct: (product: IProduct | null) => void;
+  createProduct: (product: IProduct) => void;
+  editProduct: (product: IProduct) => void;
+  deleteProduct: (e: SyntheticEvent<HTMLButtonElement>, id: string) => void;
+  submitting: boolean;
+  target: string;
+}
+
+export const ProductDashboard: React.FC<IProps> = ({
   products,
   selectProduct,
   selectedProduct,
@@ -40,7 +56,7 @@ export const ProductDashboard = ({
           <ProductForm
             key={(selectedProduct && selectedProduct.id) || 0}
             setEditMode={setEditMode}
-            product={selectedProduct}
+            product={selectedProduct!}
             createProduct={createProduct}
             editProduct={editProduct}
             submitting={submitting}

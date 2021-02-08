@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Item, Button, Label, Segment } from 'semantic-ui-react';
+import { IProduct } from './product';
 
-export const ProductList = ({
+interface IProps {
+  products: IProduct[];
+  selectProduct: (id: string) => void;
+  deleteProduct: (event: SyntheticEvent<HTMLButtonElement>, id: string) => void;
+  submitting: boolean;
+  target: string;
+}
+
+export const ProductList: React.FC<IProps> = ({
   products,
   selectProduct,
   deleteProduct,
