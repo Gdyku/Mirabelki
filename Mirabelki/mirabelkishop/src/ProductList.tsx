@@ -1,29 +1,25 @@
-import React, { SyntheticEvent } from 'react';
-import { Item, Button, Label, Segment } from 'semantic-ui-react';
-import { IProduct } from './product';
+import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { Item, Button, Label, Segment } from "semantic-ui-react";
+import ProductStore from "./productStore";
 
-interface IProps {
-  products: IProduct[];
-  selectProduct: (id: string) => void;
-  deleteProduct: (event: SyntheticEvent<HTMLButtonElement>, id: string) => void;
-  submitting: boolean;
-  target: string;
-}
+const ProductList: React.FC = () => {
+  const productStore = useContext(ProductStore);
+  const {
+    productsByDate,
+    selectProduct,
+    deleteProduct,
+    submitting,
+    target,
+  } = productStore;
 
-export const ProductList: React.FC<IProps> = ({
-  products,
-  selectProduct,
-  deleteProduct,
-  submitting,
-  target
-}) => {
   return (
     <Segment clearing>
       <Item.Group divided>
-        {products.map(product => (
+        {productsByDate.map((product) => (
           <Item key={product.id}>
             <Item.Content>
-              <Item.Header as='a'>{product.name}</Item.Header>
+              <Item.Header as="a">{product.name}</Item.Header>
               <Item.Meta>{product.dateAdded}</Item.Meta>
               <Item.Description>
                 <div>{product.description}</div>
@@ -31,17 +27,17 @@ export const ProductList: React.FC<IProps> = ({
               <Item.Extra>
                 <Button
                   onClick={() => selectProduct(product.id)}
-                  floated='right'
-                  content='View'
-                  color='blue'
+                  floated="right"
+                  content="View"
+                  color="blue"
                 />
                 <Button
                   name={product.id}
                   loading={target === product.id && submitting}
                   onClick={(e) => deleteProduct(e, product.id)}
-                  floated='right'
-                  content='Delete'
-                  color='red'
+                  floated="right"
+                  content="Delete"
+                  color="red"
                 />
                 <Label basic content={product.category} />
               </Item.Extra>
@@ -52,3 +48,5 @@ export const ProductList: React.FC<IProps> = ({
     </Segment>
   );
 };
+
+export default observer(ProductList);

@@ -1,65 +1,25 @@
-import React, { SyntheticEvent } from 'react';
-import { Grid } from 'semantic-ui-react';
-import { IProduct } from './product';
-import { ProductDetails } from './ProductDetails';
-import { ProductForm } from './ProductForm';
-import { ProductList } from './ProductList';
+import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { Grid } from "semantic-ui-react";
+import ProductDetails from "./ProductDetails";
+import ProductForm from "./ProductForm";
+import ProductList from "./ProductList";
+import ProductStore from "./productStore";
 
-
-interface IProps {
-  products: IProduct[];
-  selectProduct: (id: string) => void;
-  selectedProduct: IProduct | null;
-  editMode: boolean;
-  setEditMode: (editMode: boolean) => void;
-  setSelectedProduct: (product: IProduct | null) => void;
-  createProduct: (product: IProduct) => void;
-  editProduct: (product: IProduct) => void;
-  deleteProduct: (e: SyntheticEvent<HTMLButtonElement>, id: string) => void;
-  submitting: boolean;
-  target: string;
-}
-
-export const ProductDashboard: React.FC<IProps> = ({
-  products,
-  selectProduct,
-  selectedProduct,
-  editMode,
-  setEditMode,
-  setSelectedProduct,
-  createProduct,
-  editProduct,
-  deleteProduct,
-  submitting,
-  target
-}) => {
+const ProductDashboard: React.FC = () => {
+  const productStore = useContext(ProductStore);
+  const { editMode, selectedProduct } = productStore;
   return (
     <Grid>
       <Grid.Column width={10}>
-        <ProductList
-          products={products}
-          selectProduct={selectProduct}
-          deleteProduct={deleteProduct}
-          submitting={submitting}
-          target={target}
-        />
+        <ProductList />
       </Grid.Column>
       <Grid.Column width={6}>
-        {selectedProduct && !editMode && (
-          <ProductDetails
-            product={selectedProduct}
-            setEditMode={setEditMode}
-            setSelectedProduct={setSelectedProduct}
-          />
-        )}
+        f{selectedProduct && !editMode && <ProductDetails />}
         {editMode && (
           <ProductForm
             key={(selectedProduct && selectedProduct.id) || 0}
-            setEditMode={setEditMode}
             product={selectedProduct!}
-            createProduct={createProduct}
-            editProduct={editProduct}
-            submitting={submitting}
           />
         )}
       </Grid.Column>
@@ -67,3 +27,4 @@ export const ProductDashboard: React.FC<IProps> = ({
   );
 };
 
+export default observer(ProductDashboard);

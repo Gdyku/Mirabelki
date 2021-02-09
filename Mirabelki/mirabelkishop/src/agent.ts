@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { IProduct } from './product';
 
-axios.defaults.baseURL = 'http://localhost:44370/api/';
+axios.defaults.baseURL = 'https://localhost:44370/api/';
 
 const responseBody = (response: AxiosResponse) => response.data;
 
@@ -20,7 +20,7 @@ const Products = {
     details: (id: string) => requests.get(`/Products/${id}`),
     create: (product: IProduct) => requests.post('/Products', product),
     update: (product: IProduct) => requests.put(`/Products/${product.id}`, product),
-    delete: (id: string) => requests.del(`/activities/${id}`)
+    delete: (id: string) => requests.del(`/Products/${id}`)
 }
 
 export default {

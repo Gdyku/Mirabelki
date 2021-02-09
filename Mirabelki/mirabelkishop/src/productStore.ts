@@ -1,0 +1,124 @@
+import { action, computed, configure, observable, runInAction } from "mobx";
+import { createContext, SyntheticEvent } from "react";
+import agent from "./agent";
+import { IProduct } from "./product";
+
+configure({ enforceActions: "always" });
+
+class ProductStore {
+  @observable productsRegistry = new Map();
+  @observable products: IProduct[] = [];
+  @observable selectedProduct: IProduct | undefined;
+  @observable loadingInitial = false;
+  @observable editMode = false;
+  @observable submitting = false;
+  @observable target = "";
+
+  @computed get productsByDate() {
+    return Array.from(this.productsRegistry.values()).sort(
+      (a, b) => Date.parse(a.dateAdded) - Date.parse(b.dateAdded)
+    );
+  }
+
+  @action loadProducts = async () => {
+    this.loadingInitial = true;
+    try {
+      const products = await agent.Products.list();
+      runInAction("loading products", () => {
+        products.forEach((product) => {
+          product.dateAdded = product.dateAdded.split(".")[0];
+          this.productsRegistry.set(product.id, product);
+        });
+        this.loadingInitial = false;
+      });
+    } catch (error) {
+      runInAction("loading products error", () => {
+        this.loadingInitial = false;
+      });
+      console.log(error);
+    }
+  };
+
+  @action createProduct = async (product: IProduct) => {
+    this.submitting = true;
+    try {
+      await agent.Products.create(product);
+      runInAction("creating product", () => {
+        this.productsRegistry.set(product.id, product);
+        this.editMode = false;
+        this.submitting = false;
+      });
+    } catch (error) {
+      runInAction("creating product error", () => {
+        this.submitting = false;
+      });
+      console.log(error);
+    }
+  };
+
+  @action editProduct = async (product: IProduct) => {
+    this.submitting = true;
+    try {
+      await agent.Products.update(product);
+      runInAction("editing product", () => {
+        this.productsRegistry.set(product.id, product);
+        this.selectedProduct = product;
+        this.editMode = false;
+        this.submitting = false;
+      });
+    } catch (error) {
+      runInAction("editing product error", () => {
+        this.submitting = false;
+      });
+      console.log(error);
+    }
+  };
+
+  @action deleteProduct = async (
+    event: SyntheticEvent<HTMLButtonElement>,
+    id: string
+  ) => {
+    this.submitting = true;
+    this.target = event.currentTarget.name;
+    try {
+      await agent.Products.delete(id);
+      runInAction("deleting product", () => {
+        this.productsRegistry.delete(id);
+        this.submitting = false;
+        this.target = "";
+      });
+    } catch (error) {
+      runInAction("deleting product error", () => {
+        this.submitting = false;
+        this.target = "";
+      });
+
+      console.log(error);
+    }
+  };
+
+  @action openCreateForm = () => {
+    this.editMode = true;
+    this.selectedProduct = undefined;
+  };
+
+  @action openEditForm = (id: string) => {
+    this.selectedProduct = this.productsRegistry.get(id);
+    this.editMode = true;
+  };
+
+  @action selectProduct = (id: string) => {
+    this.selectedProduct = this.productsRegistry.get(id);
+    this.editMode = false;
+  };
+
+  @action cancelSelectedProduct = () => {
+    this.selectedProduct = undefined;
+  };
+
+  @action cancelOpenForm = () => {
+    this.editMode = false;
+  };
+}
+
+export default createContext(new ProductStore());
