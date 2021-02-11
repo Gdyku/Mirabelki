@@ -13,8 +13,8 @@ class ProductStore {
   @observable target = "";
 
   @computed get productsByDate() {
-    return Array.from(this.productsRegistry.values()).sort(
-      (a, b) => Date.parse(a.dateAdded) - Date.parse(b.dateAdded)
+    return this.groupedProductsByDate(
+      Array.from(this.productsRegistry.values())
     );
   }
 
@@ -115,12 +115,27 @@ class ProductStore {
   };
 
   @action clearProduct = () => {
-    this.product = null; 
-  }
+    this.product = null;
+  };
 
   getProduct = (id: string) => {
     return this.productsRegistry.get(id);
   };
+
+  groupedProductsByDate(products: IProduct[]) {
+    const groupedProducts = products.sort(
+      (a, b) => Date.parse(a.dateAdded) - Date.parse(b.dateAdded)
+    );
+    return Object.entries(
+      groupedProducts.reduce((products, product) => {
+        const date = product.dateAdded.split("T")[0];
+        products[date] = products[date]
+          ? [...products[date], product]
+          : [product];
+        return products;
+      }, {} as { [key: string]: IProduct[] })
+    );
+  }
 }
 
 export default createContext(new ProductStore());

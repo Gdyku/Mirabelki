@@ -1,5 +1,5 @@
 import React, { useState, FormEvent, useContext, useEffect } from "react";
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Segment, Form, Button, Grid } from "semantic-ui-react";
 import { IProduct } from "./product";
 import { v4 as uuid } from "uuid";
 import ProductStore from "./productStore";
@@ -71,49 +71,53 @@ const ProductForm: React.FC<RouteComponentProps<DetailParams>> = ({
   };
 
   return (
-    <Segment clearing>
-      <Form onSubmit={handleSubmit}>
-        <Form.Input
-          onChange={handleInputChange}
-          name="name"
-          placeholder="Title"
-          value={product.name}
-        />
-        <Form.TextArea
-          onChange={handleInputChange}
-          name="description"
-          rows={2}
-          placeholder="Description"
-          value={product.description}
-        />
-        <Form.Input
-          onChange={handleInputChange}
-          name="category"
-          placeholder="Category"
-          value={product.category}
-        />
-        <Form.Input
-          onChange={handleInputChange}
-          name="dateAdded"
-          type="datetime-local"
-          placeholder="Date"
-          value={product.dateAdded}
-        />
-        <Button
-          loading={submitting}
-          floated="right"
-          positive
-          type="submit"
-          content="Submit"
-        />
-        <Button
-          onClick={() => history.push('/products')}
-          floated="right"
-          type="button"
-          content="Cancel"
-        />
-      </Form>
-    </Segment>
+    <Grid>
+      <Grid.Column width={10}>
+        <Segment clearing>
+          <Form onSubmit={handleSubmit}>
+            <Form.Input
+              onChange={handleInputChange}
+              name="name"
+              placeholder="Title"
+              value={product.name}
+            />
+            <Form.TextArea
+              onChange={handleInputChange}
+              name="description"
+              rows={2}
+              placeholder="Description"
+              value={product.description}
+            />
+            <Form.Input
+              onChange={handleInputChange}
+              name="category"
+              placeholder="Category"
+              value={product.category}
+            />
+            <Form.Input
+              onChange={handleInputChange}
+              name="dateAdded"
+              type="datetime-local"
+              placeholder="Date"
+              value={product.dateAdded}
+            />
+            <Button
+              loading={submitting}
+              floated="right"
+              positive
+              type="submit"
+              content="Submit"
+            />
+            <Button
+              onClick={() => history.push("/products")}
+              floated="right"
+              type="button"
+              content="Cancel"
+            />
+          </Form>
+        </Segment>
+      </Grid.Column>
+    </Grid>
   );
 };
 
