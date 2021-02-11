@@ -7,10 +7,8 @@ configure({ enforceActions: "always" });
 
 class ProductStore {
   @observable productsRegistry = new Map();
-  @observable products: IProduct[] = [];
-  @observable selectedProduct: IProduct | undefined;
+  @observable product: IProduct | null = null;
   @observable loadingInitial = false;
-  @observable editMode = false;
   @observable submitting = false;
   @observable target = "";
 
@@ -39,13 +37,33 @@ class ProductStore {
     }
   };
 
+  @action loadProduct = async (id: string) => {
+    let product = this.getProduct(id);
+    if (product) {
+      this.product = product;
+    } else {
+      this.loadingInitial = true;
+      try {
+        product = await agent.Products.details(id);
+        runInAction("getting product", () => {
+          this.product = product;
+          this.loadingInitial = false;
+        });
+      } catch (error) {
+        runInAction("getting activity error", () => {
+          this.loadingInitial = false;
+        });
+        console.log(error);
+      }
+    }
+  };
+
   @action createProduct = async (product: IProduct) => {
     this.submitting = true;
     try {
       await agent.Products.create(product);
       runInAction("creating product", () => {
         this.productsRegistry.set(product.id, product);
-        this.editMode = false;
         this.submitting = false;
       });
     } catch (error) {
@@ -62,8 +80,7 @@ class ProductStore {
       await agent.Products.update(product);
       runInAction("editing product", () => {
         this.productsRegistry.set(product.id, product);
-        this.selectedProduct = product;
-        this.editMode = false;
+        this.product = product;
         this.submitting = false;
       });
     } catch (error) {
@@ -97,27 +114,12 @@ class ProductStore {
     }
   };
 
-  @action openCreateForm = () => {
-    this.editMode = true;
-    this.selectedProduct = undefined;
-  };
+  @action clearProduct = () => {
+    this.product = null; 
+  }
 
-  @action openEditForm = (id: string) => {
-    this.selectedProduct = this.productsRegistry.get(id);
-    this.editMode = true;
-  };
-
-  @action selectProduct = (id: string) => {
-    this.selectedProduct = this.productsRegistry.get(id);
-    this.editMode = false;
-  };
-
-  @action cancelSelectedProduct = () => {
-    this.selectedProduct = undefined;
-  };
-
-  @action cancelOpenForm = () => {
-    this.editMode = false;
+  getProduct = (id: string) => {
+    return this.productsRegistry.get(id);
   };
 }
 

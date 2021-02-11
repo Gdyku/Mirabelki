@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\Mirabelki.csproj": {}
+    "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\Mirabelki.csproj": {}
   },
   "projects": {
     "C:\\Users\\Gdyku\\Desktop\\Project\\MirabelkiDomain\\MirabelkiDomain.csproj": {
@@ -82,14 +82,14 @@
         }
       }
     },
-    "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\Mirabelki.csproj": {
+    "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\Mirabelki.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\Mirabelki.csproj",
+        "projectUniqueName": "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\Mirabelki.csproj",
         "projectName": "Mirabelki",
-        "projectPath": "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\Mirabelki.csproj",
+        "projectPath": "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\Mirabelki.csproj",
         "packagesPath": "C:\\Users\\Gdyku\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gdyku\\Desktop\\Project\\mirabelki\\obj\\",
+        "outputPath": "C:\\Users\\Gdyku\\Desktop\\Project\\Mirabelki\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gdyku\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,39 +1,53 @@
-import React, { useState, FormEvent, useContext } from "react";
+import React, { useState, FormEvent, useContext, useEffect } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { IProduct } from "./product";
 import { v4 as uuid } from "uuid";
 import ProductStore from "./productStore";
 import { observer } from "mobx-react-lite";
+import { RouteComponentProps } from "react-router-dom";
 
-interface IProps {
-  product: IProduct;
+interface DetailParams {
+  id: string;
 }
 
-const ProductForm: React.FC<IProps> = ({
-  product: initialFormState,
+const ProductForm: React.FC<RouteComponentProps<DetailParams>> = ({
+  match,
+  history,
 }) => {
   const productStore = useContext(ProductStore);
   const {
     createProduct,
     editProduct,
     submitting,
-    cancelOpenForm,
+    product: initialFormState,
+    loadProduct,
+    clearProduct,
   } = productStore;
-  const initializeForm = () => {
-    if (initialFormState) {
-      return initialFormState;
-    } else {
-      return {
-        id: "",
-        name: "",
-        category: "",
-        description: "",
-        dateAdded: "",
-      };
-    }
-  };
 
-  const [product, setProduct] = useState<IProduct>(initializeForm);
+  const [product, setProduct] = useState<IProduct>({
+    id: "",
+    name: "",
+    category: "",
+    description: "",
+    dateAdded: "",
+  });
+
+  useEffect(() => {
+    if (match.params.id && product.id.length === 0) {
+      loadProduct(match.params.id).then(
+        () => initialFormState && setProduct(initialFormState)
+      );
+    }
+    return () => {
+      clearProduct();
+    };
+  }, [
+    loadProduct,
+    clearProduct,
+    match.params.id,
+    initialFormState,
+    product.id.length,
+  ]);
 
   const handleSubmit = () => {
     if (product.id.length === 0) {
@@ -41,9 +55,11 @@ const ProductForm: React.FC<IProps> = ({
         ...product,
         id: uuid(),
       };
-      createProduct(newProduct);
+      createProduct(newProduct).then(() =>
+        history.push(`/products/${newProduct.id}`)
+      );
     } else {
-      editProduct(product);
+      editProduct(product).then(() => history.push(`/products/${product.id}`));
     }
   };
 
@@ -91,7 +107,7 @@ const ProductForm: React.FC<IProps> = ({
           content="Submit"
         />
         <Button
-          onClick={cancelOpenForm}
+          onClick={() => history.push('/products')}
           floated="right"
           type="button"
           content="Cancel"

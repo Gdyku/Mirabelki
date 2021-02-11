@@ -1,29 +1,27 @@
-import React, { useEffect, Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import ProductDashboard from "./ProductDashboard";
-import LoadingComponent from "./LoadingComponent";
-import ProductStore from "./productStore";
 import { observer } from "mobx-react-lite";
+import { Route, RouteComponentProps, withRouter } from "react-router-dom";
+import ProductForm from "./ProductForm";
+import ProductDetails from "./ProductDetails";
 
-const App = () => {
-  const productStore = useContext(ProductStore);
-
-  useEffect(() => {
-    productStore.loadProducts();
-  }, [productStore]);
-
-  if (productStore.loadingInitial)
-    return <LoadingComponent content="Loading Products" />;
-
+const App: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <Fragment>
       <NavBar />
       <Container style={{ marginTop: "7em" }}>
-        <ProductDashboard />
+        <Route exact path="/products" component={ProductDashboard} />
+        <Route path="/products/:id" component={ProductDetails} />
+        <Route
+          key={location.key}
+          path={["/createProduct", "/manage/:id"]}
+          component={ProductForm}
+        />
       </Container>
     </Fragment>
   );
 };
 
-export default observer(App);
+export default withRouter(observer(App));
